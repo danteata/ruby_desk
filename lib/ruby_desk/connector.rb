@@ -167,7 +167,9 @@ module RubyDesk
       json = prepare_and_invoke_api_call 'auth/v1/keys/tokens',
           :params=>{:frob=>@frob, :api_key=>@api_key}, :method=>:post,
           :auth=>false
-      @auth_user = User.new(json['auth_user'])
+      
+      #commented out in the mean time
+      #@auth_user = User.new(json['auth_user'])
       @api_token = json['token']
     end
 
