@@ -164,13 +164,13 @@ module RubyDesk
     #  Return Data
     #    * token
     def get_token
-      json = prepare_and_invoke_api_call 'auth/v1/keys/tokens',
+      @json = prepare_and_invoke_api_call 'auth/v1/keys/tokens',
           :params=>{:frob=>@frob, :api_key=>@api_key}, :method=>:post,
           :auth=>false
       
       #commented out in the mean time
       #@auth_user = User.new(json['auth_user'])
-      @api_token = json['token']
+      @api_token = @json['token']
     end
 
     # Returns an authentication frob.
