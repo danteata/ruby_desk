@@ -168,9 +168,10 @@ module RubyDesk
           :params=>{:frob=>@frob, :api_key=>@api_key}, :method=>:post,
           :auth=>false
       
+      RubyDesk.logger.debug {"Content of json hash: #{@json.to_yaml}"}
       #commented out in the mean time
       #@auth_user = User.new(json['auth_user'])
-      @api_token = @json['token']
+      #@api_token = @json['token']
     end
 
     # Returns an authentication frob.
