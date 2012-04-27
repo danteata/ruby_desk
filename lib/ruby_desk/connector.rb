@@ -118,13 +118,17 @@ module RubyDesk
     # Prepares an API call with the given arguments then invokes it and returns its body
     def prepare_and_invoke_api_call(path, options = {})
       api_call = prepare_api_call(path, options)
+      puts "API call is:: #{api_call.inspect}"
       data = invoke_api_call(api_call)
+      puts "Data is:: #{data.inspect}"
 
       parsed_data = case options[:format]
         when 'json' then JSON.parse(data)
         when 'xml' then REXML::Document.new(data)
         else JSON.parse(data) rescue REXML::Document.new(data) rescue data
       end
+      puts "Parsed Data is:: #{parsed_data.inspect}"
+
       RubyDesk.logger.info "Parsed data: #{parsed_data.inspect}"
       return parsed_data
     end
