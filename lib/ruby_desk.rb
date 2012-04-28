@@ -26,9 +26,9 @@ module RubyDesk
     attr_accessor :logger
   end
 
-  log_file = File.open("#{::Rails.root}/log/ruby_desk.log", "a")
-  self.logger = Logger.new(log_file)
-  #self.logger = Logger.new(STDERR)
+  #log_file = File.open("#{::Rails.root}/log/ruby_desk.log", "a")
+  #self.logger = Logger.new(log_file)
+  self.logger = Logger.new(STDERR)
   self.logger.sev_threshold = Logger::FATAL
 end
 
