@@ -170,14 +170,15 @@ module RubyDesk
     #  Return Data
     #    * token
     def get_token
-      @json = prepare_and_invoke_api_call 'auth/v1/keys/tokens',
+      json = prepare_and_invoke_api_call 'auth/v1/keys/tokens',
           :params=>{:frob=>@frob, :api_key=>@api_key}, :method=>:post,
           :auth=>false
       
-      RubyDesk.logger.debug {"Content of json hash: #{@json.to_yaml}"}
-      #commented out in the mean time
-      #@auth_user = User.new(json['auth_user'])
-      #@api_token = @json['token']
+      puts "Content of json hash is: #{json.to_yaml}"
+      RubyDesk.logger.debug {"Content of json hash: #{json.to_yaml}"}
+
+      @auth_user = User.new(json['auth_user'])
+      @api_token = @json['token']
     end
 
     # Returns an authentication frob.
