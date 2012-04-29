@@ -99,12 +99,16 @@ module RubyDesk
       case api_call[:method]
         when :get, 'get' then
           resp, data = http.request(Net::HTTP::Get.new(url.path+"?"+data, headers))
+          puts "get method data is :: #{data}"
         when :post, 'post' then
           resp, data = http.request(Net::HTTP::Post.new(url.path, headers), data)
+          puts "post method data is :: #{data}"
         when :delete, 'delete' then
           resp, data = http.request(Net::HTTP::Delete.new(url.path, headers), data)
       end
 
+      puts "Response code is:: #{resp.code}"
+      puts "Data accompanying response is:: #{data}"
       RubyDesk.logger.info "Response code: #{resp.code}"
       RubyDesk.logger.info "Returned data: #{data}"
 
