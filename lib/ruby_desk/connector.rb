@@ -77,13 +77,17 @@ module RubyDesk
 
     # invokes the given API call and returns body of the response as text
     def invoke_api_call(api_call)
+      puts "api_call passed to invoke_api_call method is :: #{api_call}"
       url = URI.parse(api_call[:url])
+      puts "url is :: #{url}"
       http = Net::HTTP.new(url.host, url.port)
+      puts "http is :: #{http}"
       http.use_ssl = true
 			http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       # Concatenate parameters to form data
       data = api_call[:params].to_a.map{|pair| pair.map{|x| URI.escape(x.to_s)}.join '='}.join('&')
+      puts "data is :: #{data}"
       headers = {
         'Content-Type' => 'application/x-www-form-urlencoded'
       }
@@ -174,7 +178,7 @@ module RubyDesk
           :params=>{:frob=>@frob, :api_key=>@api_key}, :method=>:post,
           :auth=>false
       
-      puts "Content of json hash is: #{json.to_yaml}"
+      puts "Content of json hash is: #{json.to_json}"
       RubyDesk.logger.debug {"Content of json hash: #{json.to_yaml}"}
 
       @auth_user = User.new(json['auth_user'])
