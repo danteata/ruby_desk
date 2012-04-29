@@ -94,7 +94,7 @@ module RubyDesk
 
       RubyDesk.logger.info "URL: #{api_call[:url]}"
       RubyDesk.logger.info "method: #{api_call[:method]}"
-      RubyDesk.logger.info "Params: #{data}"
+      #RubyDesk.logger.info "Params: #{data}"
 
       case api_call[:method]
         when :get, 'get' then
@@ -104,21 +104,21 @@ module RubyDesk
           resp, data = http.request(Net::HTTP::Post.new(url.path, headers), @data)
           puts "post method data is :: #{@data}"
         when :delete, 'delete' then
-          resp, data = http.request(Net::HTTP::Delete.new(url.path, headers), data)
+          resp, data = http.request(Net::HTTP::Delete.new(url.path, headers), @data)
       end
 
       puts "Response code is:: #{resp.code}"
       puts "Data accompanying response is:: #{@data}"
       RubyDesk.logger.info "Response code: #{resp.code}"
-      RubyDesk.logger.info "Returned data: #{data}"
+      RubyDesk.logger.info "Returned data: #{@data}"
 
       case resp.code
         when "200" then return @data
-        when "400" then raise RubyDesk::BadRequest, data
-        when "401", "403" then raise RubyDesk::UnauthorizedError, data
-        when "404" then raise RubyDesk::PageNotFound, data
-        when "500" then raise RubyDesk::ServerError, data
-        else raise RubyDesk::Error, data
+        when "400" then raise RubyDesk::BadRequest, @data
+        when "401", "403" then raise RubyDesk::UnauthorizedError, @data
+        when "404" then raise RubyDesk::PageNotFound, @data
+        when "500" then raise RubyDesk::ServerError, @data
+        else raise RubyDesk::Error, @data
       end
 
     end
