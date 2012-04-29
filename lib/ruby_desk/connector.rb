@@ -101,6 +101,7 @@ module RubyDesk
           resp, data = http.request(Net::HTTP::Get.new(url.path+"?"+@data, headers))
           puts "get method data is :: #{@data}"
         when :post, 'post' then
+          puts "this is all the request:: #{http.request(Net::HTTP::Post.new(url.path, headers), @data)}"
           resp, @request_data = http.request(Net::HTTP::Post.new(url.path, headers), @data)
           puts "post method data is :: #{@data}"
           puts "post method data after request is :: #{@request_data}"
