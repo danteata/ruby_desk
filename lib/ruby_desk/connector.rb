@@ -98,30 +98,28 @@ module RubyDesk
 
       case api_call[:method]
         when :get, 'get' then
-          resp, data = http.request(Net::HTTP::Get.new(url.path+"?"+@data, headers))
+          resp, body = http.request(Net::HTTP::Get.new(url.path+"?"+@data, headers))
           puts "get method data is :: #{@data}"
         when :post, 'post' then
-          puts "this is all the request:: #{http.request(Net::HTTP::Post.new(url.path, headers), @data).to_yaml}"
-          resp, @request_data = http.request(Net::HTTP::Post.new(url.path, headers), @data)
+          resp, body = http.request(Net::HTTP::Post.new(url.path, headers), @data)
           puts "post method data is :: #{@data}"
-          puts "post method data after request is :: #{@request_data}"
         when :delete, 'delete' then
           resp, data = http.request(Net::HTTP::Delete.new(url.path, headers), @data)
       end
 
       puts "Response code is:: #{resp.code}"
       puts "Data accompanying response is:: #{@data}"
-      puts "Data after http request is:: #{data}"
+      puts "Data after http request is:: #{resp.body}"
       RubyDesk.logger.info "Response code: #{resp.code}"
-      RubyDesk.logger.info "Returned data: #{@data}"
+      RubyDesk.logger.info "Returned data: #{resp.body}"
 
       case resp.code
-        when "200" then return data
-        when "400" then raise RubyDesk::BadRequest, data
-        when "401", "403" then raise RubyDesk::UnauthorizedError, data
-        when "404" then raise RubyDesk::PageNotFound, data
-        when "500" then raise RubyDesk::ServerError, data
-        else raise RubyDesk::Error, data
+        when "200" then return resp.body
+        when "400" then raise RubyDesk::BadRequest, resp.body
+        when "401", "403" then raise RubyDesk::UnauthorizedError, resp.body
+        when "404" then raise RubyDesk::PageNotFound, resp.body
+        when "500" then raise RubyDesk::ServerError, resp.body
+        else raise RubyDesk::Error, resp.body
       end
 
     end
