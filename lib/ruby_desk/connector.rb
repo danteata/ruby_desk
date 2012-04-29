@@ -86,8 +86,8 @@ module RubyDesk
 			http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       # Concatenate parameters to form data
-      data = api_call[:params].to_a.map{|pair| pair.map{|x| URI.escape(x.to_s)}.join '='}.join('&')
-      puts "data is :: #{data}"
+      @data = api_call[:params].to_a.map{|pair| pair.map{|x| URI.escape(x.to_s)}.join '='}.join('&')
+      puts "data is :: #{@data}"
       headers = {
         'Content-Type' => 'application/x-www-form-urlencoded'
       }
@@ -98,22 +98,22 @@ module RubyDesk
 
       case api_call[:method]
         when :get, 'get' then
-          resp, data = http.request(Net::HTTP::Get.new(url.path+"?"+data, headers))
-          puts "get method data is :: #{data}"
+          resp, data = http.request(Net::HTTP::Get.new(url.path+"?"+@data, headers))
+          puts "get method data is :: #{@data}"
         when :post, 'post' then
-          resp, data = http.request(Net::HTTP::Post.new(url.path, headers), data)
-          puts "post method data is :: #{data}"
+          resp, data = http.request(Net::HTTP::Post.new(url.path, headers), @data)
+          puts "post method data is :: #{@data}"
         when :delete, 'delete' then
           resp, data = http.request(Net::HTTP::Delete.new(url.path, headers), data)
       end
 
       puts "Response code is:: #{resp.code}"
-      puts "Data accompanying response is:: #{data}"
+      puts "Data accompanying response is:: #{@data}"
       RubyDesk.logger.info "Response code: #{resp.code}"
       RubyDesk.logger.info "Returned data: #{data}"
 
       case resp.code
-        when "200" then return data
+        when "200" then return @data
         when "400" then raise RubyDesk::BadRequest, data
         when "401", "403" then raise RubyDesk::UnauthorizedError, data
         when "404" then raise RubyDesk::PageNotFound, data
