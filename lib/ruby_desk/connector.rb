@@ -17,7 +17,7 @@ module RubyDesk
       :base_url=>ODESK_API_URL, :auth=>true}
 
     attr_writer :frob
-    attr_accessor :auth_user
+    attr_accessor :auth_user, :api_token
 
     def initialize(api_key=nil, api_secret=nil, api_token=nil)
       @api_key = api_key
