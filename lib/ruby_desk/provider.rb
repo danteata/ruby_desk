@@ -157,7 +157,7 @@ class RubyDesk::Provider < RubyDesk::OdeskEntity
   attribute :job_categories, :class=>RubyDesk::JobCategory, :sub_element=>'job_category'
   attribute :experiences, :class=>RubyDesk::Experience, :sub_element=>'experience'
   attribute :candidacies, :class=>RubyDesk::Candidacy, :sub_element=>'candidacy'
-  attribute :assignments, :class=>RubyDesk::Assignment, :sub_element=>'assignments'
+  attribute :assignments, :class=>RubyDesk::Assignment, :sub_element=>'assignment'
   attribute :certification, :class=>RubyDesk::Certificate, :sub_element=>'certificate'
   attribute :education, :class=>RubyDesk::Institution, :sub_element=>'institution'
   attribute :oth_experiences, :class=>RubyDesk::OtherExperience, :sub_element=>'oth_experience'
