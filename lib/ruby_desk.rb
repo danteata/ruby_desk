@@ -65,7 +65,7 @@ module RubyDesk
     :as_total_hours, :as_to, :as_from, :as_client, :as_opening_access,
     :as_agency_name, :as_rate, :as_blended_charge_rate, :as_amount,
     :as_total_charge, :as_opening_recno, :as_description, :as_opening_title,
-    :as_status, :as_job_type, :as_ciphertext_opening_recno, :as_total_cost)
+    :as_status, :as_job_type, :as_ciphertext_opening_recno, :as_total_cost, :feedback)
   Certificate = define_simple_class(:cmp_url, :cmp_when, :cmp_provider,
     :cmp_ref, :cmp_percentile, :cmp_name, :cmp_recno, :cmp_score, :cmp_id)
   Institution = define_simple_class(:ed_area, :ed_school, :ed_degree, :ed_to,
