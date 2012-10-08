@@ -109,7 +109,7 @@ module RubyDesk
 
       puts "Response code is:: #{resp.code}"
       puts "Data accompanying response is:: #{@data}"
-      puts "Data after http request is:: #{resp.body}"
+      #puts "Data after http request is:: #{resp.body}"
       RubyDesk.logger.info "Response code: #{resp.code}"
       RubyDesk.logger.info "Returned data: #{resp.body}"
 
@@ -131,14 +131,14 @@ module RubyDesk
       api_call = prepare_api_call(path, options)
       puts "API call is:: #{api_call.inspect}"
       data = invoke_api_call(api_call)
-      puts "Data is:: #{data.inspect}"
+      #puts "Data is:: #{data.inspect}"
 
       parsed_data = case options[:format]
         when 'json' then JSON.parse(data)
         when 'xml' then REXML::Document.new(data)
         else JSON.parse(data) rescue REXML::Document.new(data) rescue data
       end
-      puts "Parsed Data is:: #{parsed_data.inspect}"
+      #puts "Parsed Data is:: #{parsed_data.inspect}"
 
       RubyDesk.logger.info "Parsed data: #{parsed_data.inspect}"
       return parsed_data
