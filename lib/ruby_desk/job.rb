@@ -90,6 +90,8 @@
 # * timezone
 # * ui_job_profile_access
 # * version
+# * ciphertext
+#
 class RubyDesk::Job < RubyDesk::OdeskEntity
   attributes :amount, :buyer, :candidates_total, :candidates_total_active,
       :company_ref, :date_posted, :engagement_related, :engagement_weeks,
@@ -121,7 +123,7 @@ class RubyDesk::Job < RubyDesk::OdeskEntity
       :op_skill, :op_start_date, :op_status_for_search, :op_time_created,
       :op_time_posted, :op_title, :op_tot_cand_client, :op_tot_cand_prof,
       :op_tot_new_cond, :op_tot_rej, :op_ui_profile_access, :profile_key,
-      :search_status, :timezone, :ui_job_profile_access, :version
+      :search_status, :timezone, :ui_job_profile_access, :version, :ciphertext
  
   # <h2>Details on Search Parameters</h2>
   # <p>&nbsp;</p>
