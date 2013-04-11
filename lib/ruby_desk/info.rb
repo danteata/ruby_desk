@@ -123,7 +123,7 @@
 # * version
 class RubyDesk::Info < RubyDesk::OdeskEntity
 
-  attributes :profile_url, :portrait_50_img, :portrait_32_img, :ref
+  attributes :profile_url, :portrait_100_img, :portrait_50_img, :portrait_32_img, :ref
 
   class << self
 
